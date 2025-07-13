@@ -92,10 +92,13 @@
     <!-- Hero Section with Video Background -->
     <header class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
         <div id="hero-video-container">
-            <!-- ЗАМЕНИТЕ ЭТОТ URL НА ССЫЛКУ НА ВАШЕ ВИДЕО -->
+            <!-- Фоновое видео с Pinterest -->
             <video autoplay loop muted playsinline id="hero-video">
-                <source src="https://placehold.co/videos/1920x1080.mp4" type="video/mp4">
-                Your browser does not support the video tag.
+                <!-- Попробуем несколько вариантов источников -->
+                <source src="./assets/videos/c339a7795bd1c4f10e8ea1eee860bb4e.mp4" type="video/mp4">
+                <source src="https://pin.it/6yk443oTH" type="video/mp4">
+                <!-- Fallback для браузеров, которые не поддерживают видео -->
+                <div class="absolute inset-0 bg-gradient-to-b from-blue-900 via-blue-800 to-gray-900"></div>
             </video>
             <div class="video-overlay"></div>
         </div>
@@ -177,7 +180,7 @@
             <h2 data-lang-key="ctaTitle" class="text-3xl md:text-5xl font-extrabold text-white animated-item"></h2>
             <p data-lang-key="ctaSubtitle" class="mt-4 text-lg text-gray-400 max-w-2xl mx-auto animated-item"></p>
             <div class="mt-10 animated-item">
-                <a href="https://discord.gg/AxZsWrj86B" target="_blank" class="bg-blue-600 text-white font-bold py-5 px-12 rounded-lg text-xl hover:bg-blue-700 transition duration-300 transform hover:scale-105 glow">
+                <a href="https://discord.gg/AxZsWrj86B" target="_blank" class="bg-blue-600 text-white font-bold py-4 px-10 rounded-lg text-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105 glow">
                     <span data-lang-key="joinFree"></span>
                 </a>
                 <p data-lang-key="ctaHint" class="mt-4 text-sm text-gray-500"></p>
