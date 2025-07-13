@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(ellipse at top, #1a202c, #111827);
+  }
+}
+
+@layer components {
+  .gradient-text {
+    background: linear-gradient(90deg, #38bdf8, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .glow {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), 0 0 35px rgba(56, 189, 248, 0.2);
+  }
+  
+  .feature-card {
+    @apply transition-all duration-300 ease-in-out border border-blue-500/20;
+  }
+  
+  .feature-card:hover {
+    @apply transform -translate-y-2 shadow-lg border-blue-500/50;
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
+  }
+  
+  .lang-switcher button {
+    @apply transition-all duration-300 ease-in-out opacity-70;
+  }
+  
+  .lang-switcher button.active,
+  .lang-switcher button:hover {
+    @apply opacity-100 text-blue-400 transform scale-110;
+  }
+  
+  .animated-item {
+    @apply opacity-0 transform translate-y-8 transition-all duration-700 ease-out;
+  }
+  
+  .animated-item.visible {
+    @apply opacity-100 transform translate-y-0;
+  }
+} 

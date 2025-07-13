@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лаборатория Трейдинга - Ваше Бесплатное Сообщество</title>
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+    <link href="./dist/output.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(ellipse at top, #1a202c, #111827);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #38bdf8, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), 0 0 35px rgba(56, 189, 248, 0.2);
+        }
+        #hero-video-container {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -1;
+        }
+        #hero-video {
+            min-width: 100%; min-height: 100%; width: auto; height: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); object-fit: cover;
+        }
+        .video-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, #111827, rgba(17, 24, 39, 0.7));
+        }
+        .animated-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animated-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .lang-switcher button {
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+        .lang-switcher button.active, .lang-switcher button:hover {
+            opacity: 1;
+            color: #38bdf8;
+            transform: scale(1.1);
+        }
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+        /* Tailwind CSS aspect-ratio polyfill */
+        .aspect-w-16 { --tw-aspect-w: 16; } 
+        .aspect-h-9 { --tw-aspect-h: 9; } 
+        .aspect-w-16.aspect-h-9 { 
+            padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%); 
+        } 
+        .aspect-w-16.aspect-h-9 > * { 
+            position: absolute; 
+            height: 100%; 
+            width: 100%; 
+            top: 0; 
+            right: 0; 
+            bottom: 0; 
+            left: 0; 
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <!-- Language Switcher -->
+    <nav class="absolute top-0 right-0 p-6 z-20">
+        <div class="lang-switcher flex items-center space-x-4 bg-gray-900/50 backdrop-blur-sm px-4 py-2 rounded-lg">
+            <button id="lang-ru" class="font-semibold text-white">RU</button>
+            <span class="text-gray-600">|</span>
+            <button id="lang-en-gb" class="font-semibold text-white">EN-GB</button>
+            <span class="text-gray-600">|</span>
+            <button id="lang-en-us" class="font-semibold text-white">EN-US</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Video Background -->
+    <header class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+        <div id="hero-video-container">
+            <!-- ЗАМЕНИТЕ ЭТОТ URL НА ССЫЛКУ НА ВАШЕ ВИДЕО -->
+            <video autoplay loop muted playsinline id="hero-video">
+                <source src="https://placehold.co/videos/1920x1080.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+        <main class="relative z-10 container mx-auto px-6 py-16 md:py-24">
+            <h1 data-lang-key="heroTitle" class="text-4xl md:text-6xl font-extrabold text-white leading-tight"></h1>
+            <p data-lang-key="heroSubtitle" class="mt-6 text-lg md:text-xl max-w-3xl mx-auto text-gray-300"></p>
+            <div class="mt-10">
+                <a href="https://discord.gg/AxZsWrj86B" target="_blank" class="bg-blue-600 text-white font-bold py-4 px-10 rounded-lg text-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105 glow">
+                    <span data-lang-key="joinDiscord"></span>
+                </a>
+                <p data-lang-key="membersCount" class="mt-4 text-sm text-gray-400"></p>
+            </div>
+        </main>
+    </header>
+
+    <!-- Video Presentation Section -->
+    <section class="py-20 md:py-28 bg-gray-900/70 backdrop-blur-md">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 data-lang-key="videoTitle" class="text-3xl md:text-4xl font-bold text-white animated-item"></h2>
+                <p data-lang-key="videoSubtitle" class="mt-4 text-gray-400 text-lg animated-item"></p>
+            </div>
+            <div class="mt-12 max-w-4xl mx-auto animated-item">
+                <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden border-2 border-blue-500/50 glow">
+                    <!-- ЗАМЕНИТЕ ССЫЛКУ НА ВАШЕ ВИДЕО С YOUTUBE -->
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What you get Section -->
+    <section id="features" class="py-20 md:py-28">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-4xl mx-auto">
+                <h2 data-lang-key="featuresTitle" class="text-3xl md:text-4xl font-bold text-white animated-item"></h2>
+                <p data-lang-key="featuresSubtitle" class="mt-4 text-gray-400 text-lg animated-item"></p>
+            </div>
+            <div class="mt-16 grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Feature 1 -->
+                <div class="flex items-start space-x-4 p-6 bg-gray-800/50 rounded-xl feature-card animated-item">
+                    <div class="flex-shrink-0 h-12 w-12 rounded-full bg-blue-600/20 flex items-center justify-center"><svg class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
+                    <div>
+                        <h3 data-lang-key="feature1Title" class="text-xl font-bold text-white"></h3>
+                        <p data-lang-key="feature1Text" class="mt-1 text-gray-400"></p>
+                    </div>
+                </div>
+                <!-- Feature 2 -->
+                <div class="flex items-start space-x-4 p-6 bg-gray-800/50 rounded-xl feature-card animated-item">
+                    <div class="flex-shrink-0 h-12 w-12 rounded-full bg-blue-600/20 flex items-center justify-center"><svg class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg></div>
+                    <div>
+                        <h3 data-lang-key="feature2Title" class="text-xl font-bold text-white"></h3>
+                        <p data-lang-key="feature2Text" class="mt-1 text-gray-400"></p>
+                    </div>
+                </div>
+                <!-- Feature 3 -->
+                <div class="flex items-start space-x-4 p-6 bg-gray-800/50 rounded-xl feature-card animated-item">
+                    <div class="flex-shrink-0 h-12 w-12 rounded-full bg-blue-600/20 flex items-center justify-center"><svg class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></div>
+                    <div>
+                        <h3 data-lang-key="feature3Title" class="text-xl font-bold text-white"></h3>
+                        <p data-lang-key="feature3Text" class="mt-1 text-gray-400"></p>
+                    </div>
+                </div>
+                <!-- Feature 4 -->
+                <div class="flex items-start space-x-4 p-6 bg-gray-800/50 rounded-xl feature-card animated-item">
+                    <div class="flex-shrink-0 h-12 w-12 rounded-full bg-blue-600/20 flex items-center justify-center"><svg class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
+                    <div>
+                        <h3 data-lang-key="feature4Title" class="text-xl font-bold text-white"></h3>
+                        <p data-lang-key="feature4Text" class="mt-1 text-gray-400"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-20 md:py-32">
+        <div class="container mx-auto px-6 text-center">
+            <h2 data-lang-key="ctaTitle" class="text-3xl md:text-5xl font-extrabold text-white animated-item"></h2>
+            <p data-lang-key="ctaSubtitle" class="mt-4 text-lg text-gray-400 max-w-2xl mx-auto animated-item"></p>
+            <div class="mt-10 animated-item">
+                <a href="https://discord.gg/AxZsWrj86B" target="_blank" class="bg-blue-600 text-white font-bold py-5 px-12 rounded-lg text-xl hover:bg-blue-700 transition duration-300 transform hover:scale-105 glow">
+                    <span data-lang-key="joinFree"></span>
+                </a>
+                <p data-lang-key="ctaHint" class="mt-4 text-sm text-gray-500"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800/50 py-8">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p data-lang-key="footerRights"></p>
+            <p data-lang-key="footerDisclaimer" class="mt-2 text-sm"></p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- TRANSLATION DATA ---
+            const translations = {
+                'ru': {
+                    heroTitle: 'Присоединяйтесь к <span class="gradient-text">Элитному</span> Сообществу Трейдеров. <br>Абсолютно Бесплатно.',
+                    heroSubtitle: 'Получите доступ к стратегиям, аналитике и поддержке от профессионалов, которые помогут вам выйти на новый уровень в трейдинге.',
+                    joinDiscord: 'Вступить в Discord',
+                    membersCount: 'Более 1000+ участников уже с нами',
+                    videoTitle: 'Посмотрите, как работает наша <span class="gradient-text">система</span>',
+                    videoSubtitle: 'Это 2-минутное видео объяснит вам больше, чем 10 книг по трейдингу. Узнайте наш подход к рынкам.',
+                    featuresTitle: 'Что вы найдете в нашем <span class="gradient-text">сообществе</span>',
+                    featuresSubtitle: 'Мы создали экосистему для вашего роста. Все инструменты и знания в одном месте.',
+                    feature1Title: 'Ежедневные Торговые Идеи',
+                    feature1Text: 'Получайте готовые сетапы по акциям и криптовалютам с точками входа и выхода.',
+                    feature2Title: 'Эксклюзивные Индикаторы',
+                    feature2Text: 'Доступ к нашим приватным индикаторам для TradingView, которые используют профессионалы.',
+                    feature3Title: 'Поддержка 24/7',
+                    feature3Text: 'Задавайте вопросы и получайте помощь от опытных трейдеров и кураторов в любое время.',
+                    feature4Title: 'Обучающая База Знаний',
+                    feature4Text: 'Постоянно пополняемая библиотека с видео-уроками, статьями и гайдами.',
+                    ctaTitle: 'Ваше Место Среди Профессионалов Ждет Вас',
+                    ctaSubtitle: 'Хватит торговать в одиночку. Присоединяйтесь к нашему бесплатному сообществу и начните свой путь к успеху уже сегодня.',
+                    joinFree: 'Присоединиться Бесплатно',
+                    ctaHint: 'Нажмите, чтобы получить приглашение в Discord',
+                    footerRights: '&copy; 2024 Лаборатория Трейдинга. Все права защищены.',
+                    footerDisclaimer: 'Торговля на финансовых рынках сопряжена с высоким риском и может подходить не всем инвесторам. Прошлые результаты не гарантируют будущих доходов.'
+                },
+                'en-gb': {
+                    heroTitle: 'Join the <span class="gradient-text">Elite</span> Trading Community. <br>Completely Free.',
+                    heroSubtitle: 'Gain access to strategies, analytics, and support from professionals who will help you reach the next level in trading.',
+                    joinDiscord: 'Join Discord',
+                    membersCount: 'Over 1000+ members are already with us',
+                    videoTitle: 'See how our <span class="gradient-text">system</span> works',
+                    videoSubtitle: 'This 2-minute video will explain more than 10 books on trading. Learn our approach to the markets.',
+                    featuresTitle: 'What you will find in our <span class="gradient-text">community</span>',
+                    featuresSubtitle: 'We have created an ecosystem for your growth. All tools and knowledge in one place.',
+                    feature1Title: 'Daily Trading Ideas',
+                    feature1Text: 'Receive ready-made setups for stocks and cryptocurrencies with entry and exit points.',
+                    feature2Title: 'Exclusive Indicators',
+                    feature2Text: 'Access our private indicators for TradingView, used by professionals.',
+                    feature3Title: '24/7 Support',
+                    feature3Text: 'Ask questions and get help from experienced traders and curators at any time.',
+                    feature4Title: 'Educational Knowledge Base',
+                    feature4Text: 'A constantly updated library with video lessons, articles, and guides.',
+                    ctaTitle: 'Your Place Among Professionals Awaits',
+                    ctaSubtitle: 'Stop trading alone. Join our free community and start your journey to success today.',
+                    joinFree: 'Join For Free',
+                    ctaHint: 'Click to get an invitation to Discord',
+                    footerRights: '&copy; 2024 Trading Laboratory. All rights reserved.',
+                    footerDisclaimer: 'Trading on financial markets involves high risk and may not be suitable for all investors. Past performance does not guarantee future results.'
+                },
+                'en-us': {
+                    heroTitle: 'Join the <span class="gradient-text">Elite</span> Trading Community. <br>Absolutely Free.',
+                    heroSubtitle: 'Get access to strategies, analytics, and support from professionals who will help you get to the next level in trading.',
+                    joinDiscord: 'Join Discord',
+                    membersCount: 'Over 1000+ members are already with us',
+                    videoTitle: 'See how our <span class="gradient-text">system</span> works',
+                    videoSubtitle: 'This 2-minute video will explain more than 10 books on trading. Learn our approach to the markets.',
+                    featuresTitle: 'What you\'ll find in our <span class="gradient-text">community</span>',
+                    featuresSubtitle: 'We\'ve created an ecosystem for your growth. All tools and knowledge in one place.',
+                    feature1Title: 'Daily Trading Ideas',
+                    feature1Text: 'Get ready-made setups for stocks and cryptocurrencies with entry and exit points.',
+                    feature2Title: 'Exclusive Indicators',
+                    feature2Text: 'Access our private indicators for TradingView, used by professionals.',
+                    feature3Title: '24/7 Support',
+                    feature3Text: 'Ask questions and get help from experienced traders and curators at any time.',
+                    feature4Title: 'Educational Knowledge Base',
+                    feature4Text: 'A constantly updated library with video lessons, articles, and guides.',
+                    ctaTitle: 'Your Place Among Professionals Awaits',
+                    ctaSubtitle: 'Stop trading alone. Join our free community and start your journey to success today.',
+                    joinFree: 'Join For Free',
+                    ctaHint: 'Click to get an invitation to Discord',
+                    footerRights: '&copy; 2024 Trading Laboratory. All rights reserved.',
+                    footerDisclaimer: 'Trading on financial markets involves high risk and may not be suitable for all investors. Past performance does not guarantee future results.'
+                }
+            };
+
+            // --- LANGUAGE LOGIC ---
+            const langButtons = {
+                'ru': document.getElementById('lang-ru'),
+                'en-gb': document.getElementById('lang-en-gb'),
+                'en-us': document.getElementById('lang-en-us')
+            };
+
+            function setLanguage(lang) {
+                if (!translations[lang]) return;
+
+                document.documentElement.lang = lang.split('-')[0];
+                document.title = lang === 'ru' ? 'Лаборатория Трейдинга - Ваше Бесплатное Сообщество' : 'Trading Laboratory - Your Free Community';
+
+                const elements = document.querySelectorAll('[data-lang-key]');
+                elements.forEach(el => {
+                    const key = el.getAttribute('data-lang-key');
+                    if (translations[lang][key]) {
+                        el.innerHTML = translations[lang][key];
+                    }
+                });
+
+                localStorage.setItem('preferredLanguage', lang);
+
+                Object.values(langButtons).forEach(btn => btn.classList.remove('active'));
+                if (langButtons[lang]) {
+                    langButtons[lang].classList.add('active');
+                }
+            }
+
+            Object.keys(langButtons).forEach(lang => {
+                langButtons[lang].addEventListener('click', () => setLanguage(lang));
+            });
+            
+            const savedLang = localStorage.getItem('preferredLanguage');
+            const browserLang = navigator.language.toLowerCase();
+            
+            let initialLang = 'en-us'; // Default
+            if (savedLang && translations[savedLang]) {
+                initialLang = savedLang;
+            } else if (browserLang.startsWith('ru') && translations['ru']) {
+                initialLang = 'ru';
+            } else if (browserLang.startsWith('en-gb') && translations['en-gb']) {
+                initialLang = 'en-gb';
+            } else if (translations[browserLang]) {
+                initialLang = browserLang;
+            }
+
+            setLanguage(initialLang);
+
+            // --- ANIMATION LOGIC ---
+            const animatedItems = document.querySelectorAll('.animated-item');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            animatedItems.forEach(item => observer.observe(item));
+            
+            // Tailwind CSS aspect-ratio polyfill (just in case)
+            if (!document.querySelector('[class*="aspect-w-"]')) {
+                const style = document.createElement('style');
+                style.textContent = `.aspect-w-16 { --tw-aspect-w: 16; } .aspect-h-9 { --tw-aspect-h: 9; } .aspect-w-16.aspect-h-9 { padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%); } .aspect-w-16.aspect-h-9 > * { position: absolute; height: 100%; width: 100%; top: 0; right: 0; bottom: 0; left: 0; }`;
+                document.head.append(style);
+            }
+        });
+    </script>
+</body>
+</html>

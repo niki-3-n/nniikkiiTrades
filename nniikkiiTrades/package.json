@@ -1,0 +1,16 @@
+{
+  "name": "nniikkii-trades",
+  "version": "1.0.0",
+  "description": "Trading Laboratory - Free Trading Community",
+  "main": "index.html",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "build:prod": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  },
+  "keywords": ["trading", "community", "discord"],
+  "author": "Trading Laboratory",
+  "license": "MIT"
+} 
