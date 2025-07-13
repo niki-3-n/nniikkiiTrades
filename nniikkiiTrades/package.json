@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
     "start": "npx serve .",
-    "dev": "npm run build && npm run start"
+    "dev": "npm run build && npm run start",
+    "postinstall": "chmod +x ./node_modules/.bin/tailwindcss"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.0"
