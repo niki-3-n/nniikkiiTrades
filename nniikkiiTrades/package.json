@@ -5,7 +5,9 @@
   "main": "index.html",
   "scripts": {
     "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
-    "build:prod": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify"
+    "build:prod": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
+    "start": "npx serve .",
+    "dev": "npm run build && npm run start"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.0"
